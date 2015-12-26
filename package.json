@@ -4,8 +4,7 @@
   "description": "按需加载redux actions reducers",
   "main": "lib/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "babel src --out-dir lib"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -18,7 +17,6 @@
   },
   "homepage": "https://github.com/liyatang/redux-async-actions-reducers#readme",
   "devDependencies": {
-    "babel": "^6.3.26",
-    "babel-cli": "^6.3.17"
+    "babel": "^6.3.26"
   }
 }
