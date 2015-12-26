@@ -1,0 +1,23 @@
+{
+  "name": "redux-async-actions-reducers",
+  "version": "0.1.0",
+  "description": "按需加载redux actions reducers",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liyatang/redux-async-actions-reducers.git"
+  },
+  "main": "src/index.js",
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/liyatang/redux-async-actions-reducers/issues"
+  },
+  "homepage": "https://github.com/liyatang/redux-async-actions-reducers#readme",
+  "devDependencies": {
+    "redux": "^3.0.5"
+  }
+}
