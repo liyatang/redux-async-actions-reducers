@@ -1,9 +1,17 @@
 # redux-async-actions-reducers
-demo还没有提供，有疑问先issue沟通
-
+（有疑问先issue沟通）
 redux 可以通过combineReducers把reducer拆分， actions也可以放在不同的文件上定义。
 
 但按需加载貌似不行。 于是造了个
+
+# demo
+
+```
+git clone https://github.com/liyatang/redux-async-actions-reducers.git
+git checkout gh-pages
+npm install
+npm start
+```
 
 # 用法
 
@@ -37,12 +45,10 @@ App = connect(state => state, dispatch => ({
 // 某A业务的 actions 按需加载进来
 import {mapActions} from 'redux-async-actions-reducers';
 
-let actions = {};
-
-actions.something = () => {};
-
 // map 进来
-mapActions(actions);
+mapActions({
+    something(){}
+});
 ```
 
 ## 按需加载 reducers
@@ -53,7 +59,7 @@ import {combineReducers} from 'redux';
 
 // ...省略
 
-const rootReducer = combineReducers(reducers);
+const rootReducers = combineReducers(reducers);
 ```
 
 now
@@ -62,13 +68,14 @@ import {combineAsyncReducers} from 'redux-async-actions-reducers';
 
 // ...省略
 
-// reducers 的初始状态需要在这里定义。 combineAsyncReducers 接管 reducers 后会转换成function
+// reducers 的初始状态需要在这里定义。 combineAsyncReducers 接管 reducers 后会转换成function.
+// 每个reducers的state初始状态请在这里定义. 因为一开始redux会跑一个@INIT的action,把所有state初始化一遍。
 let reducers = {
     a: {},
     b: {}
 }
 
-const rootReducer = combineAsyncReducers(reducers);
+const rootReducers = combineAsyncReducers(reducers);
 ```
 
 把 combineReducers 切换 combineAsyncReducers。 这样 reducers 被 redux-async-actions-reducers 接管，就可以通过 mapReducers 来按需加载 reducers 了。
@@ -76,12 +83,12 @@ const rootReducer = combineAsyncReducers(reducers);
 ```javascript
 // 某A业务的reducers按需加载进来
 import {mapReducers} from 'redux-async-actions-reducers';
-let reducers = {};
-reducers.something = (state, action) => {
-    switch(action.type){
-      // ... 省略
-    }
-};
 
-mapReducers(reducers);
+mapReducers({
+    something(state, action){
+        switch (action.type) {
+          // ... 省略
+        }
+    }
+});
 ```
