@@ -1,5 +1,4 @@
 import {combineReducers} from 'redux';
-import {initActionType} from './actions';
 
 let _reducers = {};
 
@@ -25,12 +24,7 @@ let combineAsyncReducers = (reducers) => {
         if (typeof _reducers[key] === 'function') {
             o[key] = _reducers[key];
         } else {
-            // 是对象，先存起来
-            const forInit = Object.assign({}, _reducers[key]);
             o[key] = (state, action) => {
-                if (action.type === initActionType) {
-                    return forInit;
-                }
                 if (typeof _reducers[key] === 'function') {
                     return _reducers[key].call(null, state, action);
                 }
