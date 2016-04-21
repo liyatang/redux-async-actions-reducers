@@ -1,16 +1,20 @@
 {
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "sourceType": "module"
+  },
   "env": {
     "browser": true,
     "node": true,
     "es6": true
   },
-  "ecmaFeatures": {
-    "modules": true,
-    "blockBindings": true,
-    "forOf": true,
-    "jsx": true
-  },
   "rules": {
-    "semi": 2
+    "semi": [
+      2,
+      "always"
+    ]
   }
 }
