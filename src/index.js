@@ -1,10 +1,10 @@
-import {bindAsyncActions, mapActions} from './actions';
-import {initActionType, combineAsyncReducers, mapReducers} from './reducers';
+import {initActionType, bindAsyncActions, mapActions} from './actions';
+import {combineAsyncReducers, mapReducers} from './reducers';
 
 export {
+    initActionType,
     bindAsyncActions,
     mapActions,
-    initActionType,
     combineAsyncReducers,
     mapReducers
 };

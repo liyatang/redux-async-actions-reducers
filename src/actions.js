@@ -1,3 +1,4 @@
+const initActionType = '@@redux-async-actions-reducers/init';
 let asyncActions = {};
 let _dispatch = () => {
 };
@@ -43,6 +44,7 @@ let mapActions = (actions)=> {
 };
 
 export {
+    initActionType,
     bindAsyncActions,
     mapActions,
 };

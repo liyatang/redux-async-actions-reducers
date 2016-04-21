@@ -1,8 +1,8 @@
 import {combineReducers} from 'redux';
+import {initActionType} from './actions';
 
 let _reducers = {};
 
-const initActionType = '@@redux-async-actions-reducers/init';
 /*
  * 顶层store,且要求store要很清楚是什么和一开始的时候就定义好初始状态.(这普遍吧?)
  * reducers能够通过combineReducers进行拆分.没有明显按需加载方案.
@@ -47,7 +47,6 @@ let mapReducers = (reducers) => {
 };
 
 module.exports = {
-    initActionType,
     combineAsyncReducers,
     mapReducers
 };
