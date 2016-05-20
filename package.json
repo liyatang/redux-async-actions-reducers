@@ -5,7 +5,8 @@
   "main": "lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "babel src -d lib"
+    "deploy": "babel src -d lib",
+    "publishpatch": "npm run deploy; git add --all; git commit -m 'c'; npm version patch; npm publish --registry='https://registry.npmjs.org'; cnpm sync redux-async-actions-reducers;"
   },
   "repository": {
     "type": "git",
