@@ -5,7 +5,7 @@
  * */
 
 let asyncActions = {};
-let _dispatch = () => {
+let dispatch = () => {
 };
 
 /**
@@ -15,11 +15,11 @@ let _dispatch = () => {
  * @param {Function} dispatch
  * @returns {Object} asyncActions
  */
-let bindAsyncActions = (actions, dispatch) => {
-    _dispatch = dispatch;
+let bindAsyncActions = (actions, _dispatch) => {
+    dispatch = _dispatch;
     Object.keys(actions).forEach((key) => {
         asyncActions[key] = (...args)=> {
-            return _dispatch(actions[key](...args));
+            return dispatch(actions[key](...args));
         };
     });
     return asyncActions;
@@ -33,7 +33,7 @@ let bindAsyncActions = (actions, dispatch) => {
 let mapActions = (actions)=> {
     Object.keys(actions).forEach((key) => {
         asyncActions[key] = (...args) => {
-            return _dispatch(actions[key](...args));
+            return dispatch(actions[key](...args));
         };
     });
     return asyncActions;

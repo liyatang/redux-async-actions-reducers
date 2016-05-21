@@ -1,12 +1,15 @@
 import {combineReducers} from 'redux';
-
-let _reducers = {};
+import {getDispatch} from './store';
+let newReducers = {};
+const INIT = '@@REDUX_ASYNC_ACTIONS_REDUCERS/INIT';
 
 /**
  * reducers能够通过combineReducers进行拆分，且combineReducers会map一遍，没有明显按需加载方案。
  *
- * reducers本身是function，很容易扩展。
- * 加多一层中间层，初始返回state的初始状态(一开始redux会run一遍),如果reducers通过mapReducers按需加载进来,则切换过去.
+ * reducers本身是function，很容易扩展，加多一层中间层。
+ *
+ *
+ * 初始返回state的初始状态(一开始redux会run一遍),如果reducers通过mapReducers按需加载进来,则切换过去.
  *
  * 约定一个初始值，协助做初始化。
  *
@@ -14,27 +17,29 @@ let _reducers = {};
  * @returns {Function} combineReducers
  * */
 let combineAsyncReducers = (reducers) => {
-    _reducers = reducers;
+    newReducers = reducers;
 
     let o = {};
-    Object.keys(_reducers).forEach((key) => {
-        if (toString.call(_reducers[key]) === '[object Function]') {
-            o[key] = _reducers[key];
-        } else {
-            o[key] = (state, action) => {
-                if (toString.call(_reducers[key]) === '[object Function]') {
-                    return _reducers[key].call(null, state, action);
-                }
-                return state || _reducers[key];
-            };
-        }
+    Object.keys(newReducers).forEach((key) => {
+        o[key] = (state, action) => {
+            if (toString.call(newReducers[key]) === '[object Function]') {
+                return newReducers[key].call(null, (state === null) ? undefined : state, action);
+            }
+            return state || newReducers[key];
+        };
     });
 
     return combineReducers(o);
 };
 
+/**
+ * reducers 异步加载进来后，并没有改变store啥。 需要触发一个action来初始化
+ * 只异步加载第一级reducer，够用。 如果reducer里面还有子reducer，用combineReducers。
+ * @param reducers
+ */
 let mapReducers = (reducers) => {
-    Object.assign(_reducers, reducers);
+    Object.assign(newReducers, reducers);
+    getDispatch()({type: INIT});
 };
 
 module.exports = {
