@@ -1,12 +1,11 @@
 {
   "name": "redux-async-actions-reducers",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "按需加载redux actions reducers",
   "main": "lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "babel src -d lib",
-    "publishpatch": "npm run deploy; git add --all; git commit -m 'c'; npm version patch; npm publish --registry='https://registry.npmjs.org'; cnpm sync redux-async-actions-reducers;"
+    "deploy": "babel src -d lib"
   },
   "repository": {
     "type": "git",
