@@ -1,6 +1,6 @@
 {
   "name": "redux-async-actions-reducers",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "按需加载redux actions reducers",
   "main": "lib/index.js",
   "scripts": {
