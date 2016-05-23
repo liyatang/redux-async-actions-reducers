@@ -22,7 +22,7 @@ let combineAsyncReducers = (reducers) => {
     let o = {};
     Object.keys(newReducers).forEach((key) => {
         o[key] = (state, action) => {
-            if (toString.call(newReducers[key]) === '[object Function]') {
+            if (typeof newReducers[key] === 'function') {
                 return newReducers[key].call(null, (state === null) ? undefined : state, action);
             }
             return state || newReducers[key];
