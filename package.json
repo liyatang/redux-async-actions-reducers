@@ -20,8 +20,5 @@
   "devDependencies": {
     "babel": "^6.3.26",
     "redux": "^3.5.1"
-  },
-  "dependencies": {
-    "redux": "^3.5.1"
   }
 }
